@@ -583,10 +583,66 @@
                 font-size: 2.5rem;
             }
         }
+
+        .retired-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .retired-card {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-primary);
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text-primary);
+        }
+
+        .retired-card h2 {
+            margin: 0 0 12px 0;
+            font-family: 'Barlow', sans-serif;
+            font-style: italic;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .retired-card p {
+            margin: 0 0 20px 0;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .retired-card a.apply-button {
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .retired-card button.apply-button {
+            margin-left: 10px;
+        }
     </style>
 </head>
 
 <body data-theme="dark">
+
+    <div class="retired-overlay" id="retiredOverlay">
+        <div class="retired-card">
+            <h2>This Project Has Been Retired</h2>
+            <p>Dial Caliper Sim is no longer maintained. Check out <strong>Shop Tool Sim</strong>, the updated and fully functional version.</p>
+            <a class="apply-button" href="https://kevmcg1.github.io/shop-tool-sim" target="_blank" rel="noopener noreferrer">Go to Shop Tool Sim</a>
+            <button class="apply-button" id="dismissRetiredNotice">Continue Anyway</button>
+        </div>
+    </div>
 
     <div class="caliper-container">
         <div class="title-container">
@@ -1149,6 +1205,11 @@
         createMainScale();
         createTicks();
         updateReading();
+
+        // Retired notice dismiss
+        document.getElementById('dismissRetiredNotice').addEventListener('click', function () {
+            document.getElementById('retiredOverlay').remove();
+        });
     </script>
 </body>
 
